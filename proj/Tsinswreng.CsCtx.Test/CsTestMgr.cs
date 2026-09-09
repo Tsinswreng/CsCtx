@@ -1,5 +1,6 @@
 using Tsinswreng.CsTreeTest;
 using Cs.Test.Domains.Calculator;
+using Cs.Test.Domains.Ctx;
 namespace Cs.Test;
 
 public class CsTestMgr:DiEtTestMgr{
@@ -7,6 +8,7 @@ public class CsTestMgr:DiEtTestMgr{
 	public override ITestNode RegisterTestsInto(ITestNode? Node){
 		Node = this.TestNode;
 		this.RegisterTester<TestCalculator>();
+		this.RegisterTester<TestFnCtx>();
 		return Node;
 	}
 }

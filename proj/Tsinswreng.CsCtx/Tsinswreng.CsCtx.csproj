@@ -1,16 +1,39 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<OutputType>Library</OutputType>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		
+		<IsAotCompatible>true</IsAotCompatible>
+		<VerifyReferenceAotCompatibility>true</VerifyReferenceAotCompatibility>
+
+		<!-- NuGet package identity and discovery metadata. -->
+		<PackageId>Tsinswreng.CsCtx</PackageId>
+		<Version>0.0.1-alpha</Version>
+		<Authors>Tsinswreng</Authors>
+		<Description>A minimal NativeAOT-compatible C# function-context container: an object-keyed dictionary (IFnCtx) with identity-based strongly-typed keys (CtxKey&lt;T&gt;) and a default implementation (FnCtx).</Description>
+		<PackageTags>context;function;dictionary;key;nativeaot;cross-platform</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright (c) 2026 Tsinswreng</Copyright>
+		<PackageProjectUrl>https://github.com/Tsinswreng/CsCtx</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Tsinswreng/CsCtx</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<!-- Produce debuggable packages without coupling ordinary builds to packing. -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<IncludeSource>true</IncludeSource>
+		<DebugType>portable</DebugType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="BeaKona.AutoInterfaceGenerator" Version="1.0.46" />
+		<!-- 源生成器只在编译期生成 IDictionary 转发实现，不泄漏为消费者套件的运行期依赖。 -->
+		<PackageReference Include="BeaKona.AutoInterfaceGenerator" Version="1.0.46" PrivateAssets="all" />
 	</ItemGroup>
-
-	
 
 </Project>
